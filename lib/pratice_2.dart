@@ -224,3 +224,4 @@ class Exercise6 {
     return num;
   }
 }
+
