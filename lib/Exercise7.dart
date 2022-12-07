@@ -1,26 +1,16 @@
-mixin GetUserName {
-  String getEmail(String string) {
-    var emailCom = "@gmail.com";
-    return string += emailCom;
+class Exercise7 {
+
+  int Num = 10;
+  
+  Exercise7(){
+    print(Num.toKvadrat());
   }
+  
 }
 
-class User {
-  var Email;
-  User(this.Email);
-}
-
-class AdminUser extends User with GetUserName {
-  AdminUser(super.Email) {
-    print(getEmail(Email));
+extension Kvadrat on int {
+  int toKvadrat() {
+    var someNum = this * this;
+    return someNum;
   }
-
-  @override
-  String getEmail(String string) {
-    return super.getEmail(string);
-  }
-}
-
-class GeneralUser extends User {
-  GeneralUser(super.Email);
 }
