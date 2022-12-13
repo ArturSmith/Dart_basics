@@ -182,7 +182,8 @@ class Exercise4 {
 
 class Exercise5 {
   // ignore: non_constant_identifier_names
-  List GetListOfNums(List<String> someList) {
+  List NumsFromStrings(List<String> someList) {
+    var newList = [];
     Map<int, String> map = {
       0: "zero",
       1: "one",
@@ -195,33 +196,75 @@ class Exercise5 {
       8: "eight",
       9: "nine"
     };
+    Set<String> set = {
+      "zero",
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      " eight",
+      "nine"
+    };
 
-    var newList = [];
-
-    for (var elementMap in map.entries) {
-      for (var elementList in someList) {
-        if (elementList == elementMap.value && !newList.contains(elementList)) {
-          newList.add(elementMap.key);
-        }
+    var newSet = set.intersection(someList.toSet());
+    for (var element in map.entries) {
+      if (newSet.contains(element.value)) {
+        newList.add(element.key);
       }
     }
-    newList.sort();
+
     return newList;
   }
 }
 
-class Exercise6 {
-  static List<double> pointMain = [];
+class Point {
+  List<double> point;
+  Point.named(this.point);
 
-  Exercise6.name(List<double> pointMain);
+  double distanceTo(Point another) {
+    double x1 = point[0];
+    double y1 = point[1];
+    double z1 = point[2];
+    double x2 = another.point[0];
+    double y2 = another.point[1];
+    double z2 = another.point[2];
 
-  var constractor = Exercise6.name([4.0, 3.0, 5.0]);
+    double d = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2) + pow(z2 - z1, 2));
 
-  double distanceToPoint(List<double> a) {
-    var num = sqrt(pow(2, a[0] - pointMain[0]) +
-        pow(2, a[1] - pointMain[1]) +
-        pow(2, a[2] - pointMain[2]));
-    return num;
+    return d;
+  }
+
+  double AreaOfTriangle(Point A, Point B, Point C) {
+    List<double> pointA = A.point;
+    List<double> pointB = B.point;
+    List<double> pointC = C.point;
+
+    double AB = sqrt((pow(2, pointA[0] - pointB[0]) +
+        pow(2, pointA[1] - pointB[1]) +
+        pow(2, pointA[1] - pointB[1])));
+    double AC = sqrt((pow(2, pointA[0] - pointC[0]) +
+        pow(2, pointA[1] - pointC[1]) +
+        pow(2, pointA[1] - pointC[1])));
+    double BC = sqrt((pow(2, pointC[0] - pointB[0]) +
+        pow(2, pointC[1] - pointB[1]) +
+        pow(2, pointC[1] - pointB[1])));
+
+    double semiPerimeter = (AB + AC + BC) / 2;
+
+    double S = sqrt((semiPerimeter - AB) *
+        (semiPerimeter - AC) *
+        (semiPerimeter - BC) *
+        semiPerimeter);
+
+    return S;
+  }
+
+  factory Point() {
+    var point = Point.named([0, 0, 0]);
+
+    return point;
   }
 }
-

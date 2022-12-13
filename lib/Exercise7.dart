@@ -1,16 +1,17 @@
+import 'dart:math';
+
 class Exercise7 {
 
-  int Num = 10;
+  double Num = 10;
   
   Exercise7(){
-    print(Num.toKvadrat());
+    print(Num.sqrtFun());
   }
   
 }
 
-extension Kvadrat on int {
-  int toKvadrat() {
-    var someNum = this * this;
-    return someNum;
+extension Sqrt on double {
+  double sqrtFun() {
+    return sqrt(this);
   }
 }
